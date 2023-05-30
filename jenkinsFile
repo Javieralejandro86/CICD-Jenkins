@@ -33,10 +33,10 @@ pipeline
                     if (dia == 4)  {
                         git branch: "master", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
-                    if (dia == 2){
+                    if (dia == 1){
                         echo "no hacer nada"
                     }
-                    if (dia == 3){
+                    if (dia == 2){
                         println "La hora actual es " + env.FECHA
                     }
                 }
