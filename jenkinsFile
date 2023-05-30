@@ -30,13 +30,13 @@ pipeline
                     println "Los días de la semana son: " + map
                     println "El día de hoy es: " + dia
 
-                    if (dia == 4)  {
+                    if (dia == 2)  {
                         git branch: "master", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
                     if (dia == 1){
                         echo "no hacer nada"
                     }
-                    if (dia == 2){
+                    if (dia == 3){
                         println "La hora actual es " + env.FECHA
                     }
                 }
