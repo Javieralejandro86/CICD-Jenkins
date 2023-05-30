@@ -12,7 +12,6 @@ pipeline
                     def fecha = new Date()
                     def formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                     def fechaFormateada = formatoFecha.format(fecha)
-                    println "La fecha actual es " + fechaFormateada
                     env.FECHA = fechaFormateada.toString()
                 }
 
@@ -32,12 +31,12 @@ pipeline
                     println map
 
                     if (dia == 4)  {
-                        echo "El usuario que inicio el trabajo es ${env.USERNAME}"
+                        git branch: "main", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
                     if (dia == 1){
 
                     }
-                    if (dia == 3){
+                    if (dia == 2){
                         println "La hora actual es " + env.FECHA
                     }
                 }
