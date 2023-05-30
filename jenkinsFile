@@ -30,13 +30,13 @@ pipeline
                     println dia
                     println map
 
-                    if (dia == 4)  {
+                    if (dia == 2)  {
                         git branch: "main", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
                     if (dia == 1){
 
                     }
-                    if (dia == 2){
+                    if (dia == 3){
                         println "La hora actual es " + env.FECHA
                     }
                 }
