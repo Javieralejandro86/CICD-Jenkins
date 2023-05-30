@@ -26,15 +26,15 @@ pipeline
                 script
                 {
                     def dia = new Date().getDay()
-                    def map = [1: "Lunes", 2: "Martes", 3: "Miercoles", 4:"Jueves", 5:"Viernes", 6:"Sabado", 7: "Domingo"]
-                    println dia
-                    println map
+                    def map = [1: "Lunes", 2: "Martes", 3: "Miercoles", 4:"Jueves", 5:"Viernes", 6:"Sabado", 7: "Domingo"]       
+                    println "Los días de la semana son: " + map
+                    println "El día de hoy es: " + dia
 
-                    if (dia == 2)  {
+                    if (dia == 4)  {
                         git branch: "master", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
-                    if (dia == 1){
-
+                    if (dia == 2){
+                        echo "no hacer nada"
                     }
                     if (dia == 3){
                         println "La hora actual es " + env.FECHA
