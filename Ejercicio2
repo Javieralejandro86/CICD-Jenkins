@@ -1,0 +1,137 @@
+pipeline
+{
+    agent any
+    environment
+    {
+        numero1 = 100
+        numero2= 100
+        ciudad = "Barcelona"
+        clima = "Soleado"
+        poblacion = 1000000
+        
+    }
+    
+    stages
+    {
+        stage("Bienvenida")
+        {
+            steps
+            {
+                script
+                {
+                def fecha = new Date()
+                def formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                def fechaFormateada = formatoFecha.format(fecha)
+                println "La fecha actual es " + fechaFormateada
+                env.FECHA = fechaFormateada.toString()
+                }
+            }
+        }
+        stage("Ciudad y clima")
+        {
+           steps
+           {
+              script
+              {
+                println "El clima en " + ciudad + " es " + clima
+              }
+            }
+        }
+        stage("Población Neta")
+        {
+            steps
+            {
+                script
+                {
+                    def calculoNeto = (poblacion.toFloat() * 0.8)
+                    println "La poblacion neta es " + calculoNeto
+                    env.CALCULO = calculoNeto
+                }
+            }
+        }
+        stage("Sumar")
+        {
+            steps
+            {
+                script
+                {
+                    def sumar = numero1.toInteger() + numero2.toInteger()
+                    println "La suma de los dos numeros es: " + sumar
+                    env.SUMAR = sumar
+                }
+                
+            }
+            
+        }
+        stage("Restar")
+        {
+            steps
+            {
+                script
+                {
+                    def resta = numero1.toInteger() - numero2.toInteger()
+                    println "La resta de los numeros es: " + resta
+                    env.RESTA = resta
+                }
+            }
+        }
+        stage("Multiplicacion")
+        {
+            steps
+            {
+                script
+                {
+                    def multiplicacion = numero1.toInteger() * numero2.toInteger()
+                    println "La multiplicacion de los numeros es: " + multiplicacion
+                    env.MULTIPLICACION = multiplicacion
+                }
+                
+            }
+        }
+        stage("Division")
+        {
+            steps
+            {
+                script
+                {
+                    def division =numero1.toInteger() / numero2.toInteger()
+                    if(numero1.toInteger() != 0 && numero2.toInteger() != 0)
+                        {
+                    println "La division de los numeros es: " + division
+                        }
+                    else
+                    {
+                     println "No se puede dividir por 0"   
+                    }
+                    env.DIVISION = division
+                }
+            }
+        }
+        stage("Creacion de fichero")
+        {
+            steps
+            {
+                script
+                {
+                    def informacion = "Fecha: " + env.FECHA + " Ciudad: " + ciudad + " Clima: " + clima + " Poblacion Neta: " + env.CALCULO + "Suma: " + env.SUMAR + 
+                    " Resta: " + env.RESTA + " Multiplicacion: " + env.MULTIPLICACION + " Division: " + env.DIVISION
+                    writeFile(file:"salida_archivo.txt", text:informacion)
+                }
+            }
+        }
+        
+        stage("Lectura de fichero")
+        {
+            steps
+            {
+                
+                script
+                {
+                    def archivo = readFile(file: "salida_archivo.txt"
+                    )
+                    println archivo
+                }
+            }
+        }
+    }
+}
