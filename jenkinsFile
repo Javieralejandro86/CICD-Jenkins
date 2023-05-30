@@ -1,0 +1,49 @@
+pipeline
+{
+    agent any
+    stages
+    {
+        stage ("funcion date")
+        {
+            steps
+            {
+                script
+                {
+                    def fecha = new Date()
+                    def formatoFecha = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    def fechaFormateada = formatoFecha.format(fecha)
+                    println "La fecha actual es " + fechaFormateada
+                    env.FECHA = fechaFormateada.toString()
+                }
+
+            }
+        }
+
+        stage("Dias de la semana")
+        {
+            steps
+            {
+                
+                script
+                {
+                    def dia = new Date().getDay()
+                    def map = [1: "Lunes", 2: "Martes", 3: "Miercoles", 4:"Jueves", 5:"Viernes", 6:"Sabado", 7: "Domingo"]
+                    println dia
+                    println map
+
+                    if (dia == 4)  {
+                        echo "El usuario que inicio el trabajo es ${env.USERNAME}"
+                    }
+                    if (dia == 1){
+
+                    }
+                    if (dia == 3){
+                        println "La hora actual es " + env.FECHA
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
