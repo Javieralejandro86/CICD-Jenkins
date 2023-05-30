@@ -31,7 +31,7 @@ pipeline
                     println map
 
                     if (dia == 2)  {
-                        git branch: "main", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
+                        git branch: "master", url: "https://github.com/Javieralejandro86/CICD-Jenkins.git"
                     }
                     if (dia == 1){
 
